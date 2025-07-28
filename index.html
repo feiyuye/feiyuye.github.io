@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术博客</title>
+    <script src="https://cdn.tailwindcss.com/3.3.3"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(22, 93, 255, 0.1);
+        }
+        .tag-hover {
+            transition: all 0.2s ease;
+        }
+        .tag-hover:hover {
+            background-color: #165DFF;
+            color: white;
+        }
+        .header-bg {
+            background-image: url('https://s.coze.cn/image/hpVewr2ZweA/');
+            background-size: cover;
+            background-position: center;
+        }
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed w-full z-50 py-4 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex items-center justify-between glassmorphism px-6 py-3">
+                <div class="text-xl font-bold text-blue-800">
+                    <i class="fas fa-code mr-2"></i>技术博客
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition-colors">首页</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition-colors">分类</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition-colors">标签</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition-colors">关于我</a>
+                </div>
+                <button class="md:hidden text-gray-700 focus:outline-none" id="mobileMenuButton">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端菜单 -->
+    <div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-white z-40 hidden">
+        <div class="container mx-auto px-4 py-20">
+            <div class="flex justify-end mb-8">
+                <button id="closeMenuButton" class="text-gray-700">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-6 text-center">
+                <a href="#" class="text-xl text-gray-700 hover:text-blue-600">首页</a>
+                <a href="#" class="text-xl text-gray-700 hover:text-blue-600">分类</a>
+                <a href="#" class="text-xl text-gray-700 hover:text-blue-600">标签</a>
+                <a href="#" class="text-xl text-gray-700 hover:text-blue-600">关于我</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 头部区域 -->
+    <header class="header-bg pt-32 pb-20 text-white relative">
+        <div class="absolute inset-0 bg-blue-900 opacity-70"></div>
+        <div class="container mx-auto px-4 md:px-6 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">探索技术与创新</h1>
+                <p class="text-xl md:text-2xl mb-8">分享前端开发、后端架构、人工智能等领域的技术文章与实践经验</p>
+                <div class="flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <input type="text" placeholder="搜索文章..." class="w-full py-3 px-5 rounded-full bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-white">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main class="container mx-auto px-4 md:px-6 py-12">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- 文章列表 -->
+            <div class="lg:w-2/3">
+                <h2 class="text-2xl font-bold mb-8 flex items-center">
+                    <i class="fas fa-newspaper mr-3 text-blue-600"></i>最新文章
+                </h2>
+                
+                <!-- 文章卡片1 -->
+                <article class="glassmorphism p-6 mb-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full mr-3">前端开发</span>
+                        <span class="text-gray-500 text-sm"><i class="far fa-calendar mr-1"></i>2024-03-15</span>
+                        <span class="text-gray-500 text-sm ml-3"><i class="far fa-clock mr-1"></i>8分钟阅读</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-blue-800 hover:text-blue-600 transition-colors">
+                        <a href="#">React 18新特性深度解析与实战应用</a>
+                    </h3>
+                    <p class="text-gray-600 mb-4">React 18带来了并发渲染、自动批处理等重大更新，本文将深入探讨这些新特性的实现原理，并通过实际案例展示如何优化应用性能...</p>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">前端框架</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">性能优化</a>
+                    </div>
+                </article>
+                
+                <!-- 文章卡片2 -->
+                <article class="glassmorphism p-6 mb-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full mr-3">后端架构</span>
+                        <span class="text-gray-500 text-sm"><i class="far fa-calendar mr-1"></i>2024-03-10</span>
+                        <span class="text-gray-500 text-sm ml-3"><i class="far fa-clock mr-1"></i>12分钟阅读</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-blue-800 hover:text-blue-600 transition-colors">
+                        <a href="#">微服务架构下的分布式事务解决方案</a>
+                    </h3>
+                    <p class="text-gray-600 mb-4">在微服务架构中，分布式事务一直是技术难点。本文将对比Saga模式、TCC、本地消息表等解决方案，并分享我们在实际项目中的实践经验...</p>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">微服务</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">分布式系统</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">事务处理</a>
+                    </div>
+                </article>
+                
+                <!-- 文章卡片3 -->
+                <article class="glassmorphism p-6 mb-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-purple-100 text-purple-800 text-sm px-3 py-1 rounded-full mr-3">人工智能</span>
+                        <span class="text-gray-500 text-sm"><i class="far fa-calendar mr-1"></i>2024-03-05</span>
+                        <span class="text-gray-500 text-sm ml-3"><i class="far fa-clock mr-1"></i>15分钟阅读</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-blue-800 hover:text-blue-600 transition-colors">
+                        <a href="#">大语言模型在企业知识库中的应用实践</a>
+                    </h3>
+                    <p class="text-gray-600 mb-4">如何利用大语言模型构建企业级知识库系统？本文将分享我们在RAG架构、向量数据库选择、模型微调等方面的实践经验...</p>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">LLM</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">知识库</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">RAG</a>
+                    </div>
+                </article>
+                
+                <!-- 分页 -->
+                <div class="flex justify-center mt-8">
+                    <nav class="flex items-center gap-2">
+                        <a href="#" class="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors">1</a>
+                        <a href="#" class="px-4 py-2 rounded-md bg-white text-blue-600 hover:bg-gray-100 transition-colors">2</a>
+                        <a href="#" class="px-4 py-2 rounded-md bg-white text-blue-600 hover:bg-gray-100 transition-colors">3</a>
+                        <a href="#" class="px-4 py-2 rounded-md bg-white text-blue-600 hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            
+            <!-- 侧边栏 -->
+            <div class="lg:w-1/3">
+                <!-- 作者信息 -->
+                <div class="glassmorphism p-6 mb-8">
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://s.coze.cn/image/hggtt7ZPH5Y/" alt="作者头像" class="w-24 h-24 rounded-full object-cover mb-4 border-4 border-blue-100">
+                        <h3 class="text-xl font-bold mb-1">张技术</h3>
+                        <p class="text-gray-500 mb-3">全栈工程师 & 技术博主</p>
+                        <p class="text-gray-600 mb-4">8年互联网开发经验，专注于前沿技术分享与实践</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-github text-xl"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-twitter text-xl"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-linkedin text-xl"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 热门文章 -->
+                <div class="glassmorphism p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-fire mr-2 text-red-500"></i>热门文章
+                    </h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="flex items-start hover:text-blue-600 transition-colors">
+                                <span class="text-gray-500 mr-2">1.</span>
+                                <span>TypeScript 5.0新特性解析</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-start hover:text-blue-600 transition-colors">
+                                <span class="text-gray-500 mr-2">2.</span>
+                                <span>Serverless架构实战指南</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-start hover:text-blue-600 transition-colors">
+                                <span class="text-gray-500 mr-2">3.</span>
+                                <span>Docker与Kubernetes最佳实践</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-start hover:text-blue-600 transition-colors">
+                                <span class="text-gray-500 mr-2">4.</span>
+                                <span>Web性能优化全攻略</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-start hover:text-blue-600 transition-colors">
+                                <span class="text-gray-500 mr-2">5.</span>
+                                <span>GraphQL与REST API对比</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 分类列表 -->
+                <div class="glassmorphism p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-folder-open mr-2 text-blue-500"></i>分类
+                    </h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="flex justify-between items-center hover:text-blue-600 transition-colors">
+                                <span>前端开发</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">24</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex justify-between items-center hover:text-blue-600 transition-colors">
+                                <span>后端架构</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">18</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex justify-between items-center hover:text-blue-600 transition-colors">
+                                <span>人工智能</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">12</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex justify-between items-center hover:text-blue-600 transition-colors">
+                                <span>DevOps</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">9</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex justify-between items-center hover:text-blue-600 transition-colors">
+                                <span>数据库</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">7</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 标签云 -->
+                <div class="glassmorphism p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-tags mr-2 text-green-500"></i>标签云
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">JavaScript</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Node.js</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">微服务</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Docker</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Kubernetes</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Python</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">机器学习</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">数据库</a>
+                        <a href="#" class="tag-hover bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">性能优化</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">关于博客</h3>
+                    <p class="text-blue-200">本博客专注于分享前沿技术、开发经验和最佳实践，旨在帮助开发者提升技能和解决实际问题。</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">联系我</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-300"></i>
+                            <span>contact@techblog.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-blue-300"></i>
+                            <span>+86 138 1234 5678</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">社交媒体</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl text-blue-300 hover:text-white transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="text-2xl text-blue-300 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-2xl text-blue-300 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-2xl text-blue-300 hover:text-white transition-colors">
+                            <i class="fab fa-weixin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-8 pt-8 text-center text-blue-300">
+                <p>© 2024 技术博客. 保留所有权利.</p>
+                <p class="mt-2 text-sm">页面内容均由 AI 生成，仅供参考</p>
+                <p class="mt-1 text-sm">created by <a href="https://space.coze.cn" class="hover:text-white">coze space</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // 移动端菜单切换
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const closeMenuButton = document.getElementById('closeMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        closeMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
