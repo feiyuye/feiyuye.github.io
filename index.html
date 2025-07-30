@@ -419,8 +419,9 @@
                     <i class="fab fa-qq"></i>
                     <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=YJYbW2k-TFlv5VnbCx_pdbnDe2SLwzf2&authKey=oLKp6CLxuB24eEl%2FoAfMD2ZBkbwHwXB75%2BG%2B2itYUeJe4VSmN86SxdySkQjJQOFm&noverify=0&group_code=708116528">QQ群: 708116528</a>
                 </div>
+      </div>
         <section id="comments">
-            <h2>Comments</p>
+            <h2>Comments</h2>
             <script src="https://giscus.app/client.js"
         data-repo="feiyuye/feiyuye.github.io"
         data-repo-id="R_kgDON1JZbQ"
@@ -435,7 +436,9 @@
         data-lang="zh-CN"
         crossorigin="anonymous"
         async>
+                  </div>
 </script>
+        </div>      
         </section>
         <section id="achievements">
             <h2>Achievements</h2>
@@ -447,6 +450,163 @@
         <p>&copy; 2025 广西猫安全实验室. 保留所有权利.</p>
         <h2>本站由L@☯ph1F赞助制作</h2>
     </footer>
+ </div>
+
+    <script>
+        async function loadAchievements() {
+            try {
+                const response = await fetch('achievements.json');
+                const achievements = await response.json();
+                const container = document.getElementById('achievements-list');
+
+                container.innerHTML = achievements.map(ach => `
+            <div class="achievement-card">
+                <i class="${ach.icon} achievement-icon"></i>
+                <span class="achievement-date">${ach.date}</span>
+                <h3>${ach.title}</h3>
+                <p>${ach.description}</p>
+            </div>
+        `).join('');
+
+                const cards = document.querySelectorAll('.achievement-card');
+                setRandomFlashColor(cards);
+            } catch (error) {
+                console.error('加载成就数据失败:', error);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mainNav = document.getElementById('main-nav');
+            mobileMenuButton.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+            });
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        mainNav.classList.remove('active');
+                    }
+                });
+            });
+        });
+        const texts = ["WelC0m3"];
+
+        function fetchRandomText() {
+            return texts[Math.floor(Math.random() * texts.length)];
+        }
+
+        async function updateDynamicText() {
+            const dynamicTextElement = document.getElementById('dynamic-text');
+            dynamicTextElement.textContent = fetchRandomText();
+        }
+
+        updateDynamicText();
+
+        function getRandomColor() {
+            const colors = [
+                'rgba(255, 0, 0, 0.3)',
+                'rgba(0, 255, 0, 0.3)',
+                'rgba(0, 0, 255, 0.3)',
+                'rgba(255, 255, 0, 0.3)',
+                'rgba(255, 0, 255, 0.3)',
+                'rgba(0, 255, 255, 0.3)',
+                'rgba(255, 255, 255, 0.3)'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function setRandomFlashColor(cards) {
+            cards.forEach(card => {
+                const flashColor = getRandomColor();
+                card.style.setProperty('--flash-color', flashColor);
+            });
+        }
+
+        async function loadMembers() {
+            try {
+                const response = await fetch('members.json');
+                const members = await response.json();
+                const teamList = document.getElementById('team-list');
+                teamList.innerHTML = '';
+                members.forEach(member => {
+                    const card = document.createElement('div');
+                    card.className = 'team-card';
+                    card.innerHTML = `
+                        <img src="${member.avatar}" alt="${member.name}">
+                        <div class="info">
+                            <h3><a href="${member.link}">${member.name}</a></h3>
+                            <p>${member.expertise}</p>
+                        </div>
+                    `;
+                    teamList.appendChild(card);
+                });
+                const teamCards = document.querySelectorAll('.team-card');
+                setRandomFlashColor(teamCards);
+            } catch (error) {
+                console.error('加载成员信息失败:', error);
+            }
+        }
+
+        async function loadLinks() {
+            try {
+                const response = await fetch('links.json');
+                const links = await response.json();
+                const linksGrid = document.getElementById('links-grid');
+                linksGrid.innerHTML = '';
+                links.forEach(link => {
+                    const card = document.createElement('div');
+                    card.className = 'service-card';
+                    card.innerHTML = `
+                        <h3>
+                            <a href="${link.url}" target="_blank">${link.name}</a>
+                        </h3>
+                        <p>${link.description}</p>
+                    `;
+                    linksGrid.appendChild(card);
+                });
+                const serviceCards = document.querySelectorAll('.service-card');
+                setRandomFlashColor(serviceCards);
+            } catch (error) {
+                console.error('加载友情链接失败:', error);
+            }
+        }
+
+        const contactCards = document.querySelectorAll('.contact-card');
+        setRandomFlashColor(contactCards);
+
+        loadMembers();
+        loadLinks();
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    e.preventDefault();
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        const themeSwitcher = document.getElementById('theme-switcher');
+        const body = document.body;
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+            themeSwitcher.innerHTML = savedTheme === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+        themeSwitcher.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeSwitcher.innerHTML = newTheme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        });
+    </script>
+</body>
+
 
    
 </html>
