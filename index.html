@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh">
 
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>广西猫网络安全实验室</title>
-    <link rel="canonical" href="http：//www.feiyuye.github.io" />
+    <link rel="canonical" href="http://www.feiyuye.github.io" />
     <link rel="icon" href="https://uy.wzznft.com/i/2025/07/30/qw9yaq.jpg" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -372,8 +371,19 @@
         
         .achievement-card p {
             color: var(--footer-text);
-            font-size: 0.95rem；
+            font-size: 0.95rem;
             line-height: 1.5;
+        }
+        
+        /* 新增评论区样式，确保与其他内容对齐 */
+        #comments {
+            margin-top: 2rem;
+            padding-top: 1rem;
+        }
+        
+        .giscus-container {
+            width: 100%;
+            max-width: 100%;
         }
     </style>
 </head>
@@ -400,44 +410,67 @@
             <h2>About</h2>
             <p>成立于2025.7.30，专注于网络安全</p>
         </section>
+        
         <section id="team">
             <h2>Members</h2>
             <h2>吉祥物</h2>
             <img src="https://i.imgs.ovh/2025/07/30/2nK79.jpeg" width="100" height="100" alt="描述性文字">
             <div class="team-grid" id="team-list"></div>
         </section>
+        
         <section id="links">
             <h2>Links</h2>
             <div class="services-grid" id="links-grid"></div>
         </section>
+        
         <section id="contact">
             <h2>Contact us</h2>
             <p>如果您有任何问题或合作意向，欢迎通过以下方式联系我们：</p>
-            
-                </div>
+            <div class="contact-grid">
                 <div class="contact-card">
                     <i class="fab fa-qq"></i>
                     <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=YJYbW2k-TFlv5VnbCx_pdbnDe2SLwzf2&authKey=oLKp6CLxuB24eEl%2FoAfMD2ZBkbwHwXB75%2BG%2B2itYUeJe4VSmN86SxdySkQjJQOFm&noverify=0&group_code=708116528">QQ群: 708116528</a>
                 </div>
-      </section>
-        <section id="comments">
-            <h2>          Comments</h2>
-             <script src="https://giscus.app/client.js" data-repo="feiyuye/feiyuye.github.io" data-repo-id="R_kgDONwkByQ" data-category="General" data-category-id="DIC_kwDONwkByc4CmZub" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
-                data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async>
-</script>
-        </div>      
+            </div>
         </section>
+        
+        <section id="comments">
+            <h2>Comments</h2>
+            <div class="giscus-container">
+                <script src="https://giscus.app/client.js" 
+                    data-repo="feiyuye/feiyuye.github.io" 
+                    data-repo-id="R_kgDONwkByQ" 
+                    data-category="General" 
+                    data-category-id="DIC_kwDONwkByc4CmZub" 
+                    data-mapping="title" 
+                    data-strict="0" 
+                    data-reactions-enabled="1" 
+                    data-emit-metadata="0" 
+                    data-input-position="top"
+                    data-theme="preferred_color_scheme" 
+                    data-lang="zh-CN" 
+                    crossorigin="anonymous" 
+                    async>
+                </script>
+            </div>
+        </section>
+        
         <section id="achievements">
-            <h2> Achievements</h2>
-            暂无
+            <h2>Achievements</h2>
+            <p>暂无</p>
             <div class="achievements-grid" id="achievements-list"></div>
         </section>
     </div>
+    
     <footer>
         <p>&copy; 2025 广西猫安全实验室. 保留所有权利.</p>
-        <h2>本站由L@☯ph1F赞助制作</h2>
+        <p>本站由L@☯ph1F赞助制作</p>
     </footer>
- </div>
+
+    <!-- 主题切换按钮 -->
+    <div id="theme-switcher" class="theme-switcher">
+        <i class="fas fa-moon"></i>
+    </div>
 
     <script>
         async function loadAchievements() {
@@ -461,6 +494,7 @@
                 console.error('加载成就数据失败:', error);
             }
         }
+        
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mainNav = document.getElementById('main-nav');
@@ -475,6 +509,7 @@
                 });
             });
         });
+        
         const texts = ["WelC0m3"];
 
         function fetchRandomText() {
@@ -593,7 +628,4 @@
         });
     </script>
 </body>
-
-
-   
 </html>
