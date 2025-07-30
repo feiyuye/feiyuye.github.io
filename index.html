@@ -439,10 +439,12 @@
            <script src="https://giscus.app/client.js" data-repo="feiyuye/feiyuye.github.io" data-repo-id="R_kgDONwkByQ" data-category="General" data-category-id="DIC_kwDONwkByc4CmZub" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
                 data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async>
             </script>
-             </div>
         </section>
-      </div>
-      <section id="achievements">
+    </div>
+    
+    <!-- 将成就区域移回container内部 -->
+    <div class="container">
+        <section id="achievements">
             <h2>Achievements</h2>
             <p>暂无</p>
             <div class="achievements-grid" id="achievements-list"></div>
@@ -584,6 +586,7 @@
 
         loadMembers();
         loadLinks();
+        loadAchievements();
 
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
